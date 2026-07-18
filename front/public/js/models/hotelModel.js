@@ -1,4 +1,4 @@
-export class Hotel {
+export class hotelModels {
 
     constructor(
         id = 0,

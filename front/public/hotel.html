@@ -32,9 +32,9 @@
                 type="button"
                 class="btn btn-primary btn-lg"
                 data-bs-toggle="modal"
-                data-bs-target="#modalId"
+                data-bs-target="#modalCrear"
               >
-                Launch
+                Crear
               </button>
             </div>
           </div>
@@ -75,7 +75,153 @@
       </footer>
 
       <!-- seccion de modals -->
+      <!-- Modal Crear -->
 
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modalCrear"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitleId">Modal Crear</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <form id="formularioCrear">
+                  <div class="mb-3">
+                    <label for="" class="form-label">nombre</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="nombreCrear"
+                      id="nombreCrear"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                    />
+                    <small id="helpId" class="form-text text-body-secondary"
+                      >Help text nombre</small
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="" class="form-label">descripcion</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="descripcionCrear"
+                      id="descripcionCrear"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                    />
+                    <small id="helpId" class="form-text text-body-secondary"
+                      >Help text</small
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="" class="form-label">telefono</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="telefonoCrear"
+                      id="telefonoCrear"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                    />
+                    <small id="helpId" class="form-text text-body-secondary"
+                      >Help text telefono</small
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="" class="form-label">correo</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="correoCrear"
+                      id="correoCrear"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                    />
+                    <small id="helpId" class="form-text text-body-secondary"
+                      >Help text</small
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="" class="form-label">sitio_web</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="sitio_webCrear"
+                      id="sitio_webCrear"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                    />
+                    <small id="helpId" class="form-text text-body-secondary"
+                      >Help text</small
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <label for="" class="form-label">estado</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="estadoCrear"
+                      id="estadoCrear"
+                      aria-describedby="helpId"
+                      placeholder=""
+                      required
+                    />
+                    <small id="helpId" class="form-text text-body-secondary"
+                      >Help text estado</small
+                    >
+                  </div>
+                  <div class="mb-3">
+                    <button type="reset" class="btn btn-danger">Limpiar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        var modalCrear = document.getElementById("modalCrear");
+
+        modalCrear.addEventListener("show.bs.modal", function (event) {
+          // Button that triggered the modal
+          let button = event.relatedTarget;
+          // Extract info from data-bs-* attributes
+          let recipient = button.getAttribute("data-bs-whatever");
+
+          // Use above variables to manipulate the DOM
+        });
+      </script>
       <!-- Modal Body -->
       <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
       <div
@@ -89,7 +235,7 @@
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+          class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md"
           role="document"
         >
           <div class="modal-content">
@@ -103,104 +249,113 @@
               ></button>
             </div>
             <div class="modal-body">
-              <div class="mb-3">
-                <label for="" class="form-label">id</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="id"
-                  id="id"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text id</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">nombre</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="nombre"
-                  id="nombre"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text nombre</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">descripcion</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="descripcion"
-                  id="descripcion"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">telefono</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="telefono"
-                  id="telefono"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text telefono</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">correo</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="correo"
-                  id="correo"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">sitio_web</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="sitio_web"
-                  id="sitio_web"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text</small
-                >
-              </div>
-              <div class="mb-3">
-                <label for="" class="form-label">estado</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="estado"
-                  id="estado"
-                  aria-describedby="helpId"
-                  placeholder=""
-                />
-                <small id="helpId" class="form-text text-body-secondary"
-                  >Help text estado</small
-                >
-              </div>
+              <form id="formularioEditar">
+                <div class="mb-3">
+                  <label for="" class="form-label">id</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="id"
+                    id="id"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text id</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">nombre</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="nombre"
+                    id="nombre"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text nombre</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">descripcion</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="descripcion"
+                    id="descripcion"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">telefono</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="telefono"
+                    id="telefono"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text telefono</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">correo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="correo"
+                    id="correo"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">sitio_web</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="sitio_web"
+                    id="sitio_web"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label">estado</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="estado"
+                    id="estado"
+                    aria-describedby="helpId"
+                    placeholder=""
+                  />
+                  <small id="helpId" class="form-text text-body-secondary"
+                    >Help text estado</small
+                  >
+                </div>
+                <div class="mb-3">
+                  <!-- <button type="reset" class="btn btn-danger">Limpiar</button> -->
+                  <button type="submit" class="btn btn-success">
+                    Actualizar
+                  </button>
+                </div>
+              </form>
+              >
             </div>
             <div class="modal-footer">
               <button
@@ -210,7 +365,6 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save</button>
             </div>
           </div>
         </div>
