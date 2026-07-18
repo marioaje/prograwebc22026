@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 
-
+    document.getElementById('formularioEliminar').addEventListener('submit', (evento) => {
+        evento.preventDefault();
+        confirmarEliminar();
+    });
 
 });
 
@@ -48,8 +51,9 @@ function pintarTabla(dataLista) {
         let fila = `
           <tr class="table-primary">
                   <td>             
-                     <a name="" id="" class="btn btn-warning" role="button" onclick="cargarDatosFormulario(${elementoIndividual.id})">Editar</a
-                ></td>
+                     <a name="" id="" class="btn btn-warning" role="button" onclick="cargarDatosFormulario(${elementoIndividual.id})">Editar</a>
+                     <a name="" id="" class="btn btn-danger" role="button" onclick="cargarDatosEliminar(${elementoIndividual.id})">Eliminar</a>
+                  </td>
                   <td scope="row">${elementoIndividual.id}</td>
                   <td>${elementoIndividual.nombre}</td>
                   <td>${elementoIndividual.descripcion}</td>
@@ -161,17 +165,34 @@ function finalzarEditar(data) {
 
 
 function eliminarHotel(id) {
-    fetch(`${API.HOTEL}/${id}`, { method: 'DELETE' })
+
+    const objetoHotel = new hotelModels(id, "", "", "", "", "", "");
+
+
+    fetch(API.HOTEL, { method: 'DELETE', body: JSON.stringify(objetoHotel) })
         .then(response => response.json())
-        .then(data => {
-            alert("Hotel eliminado con exito");
-            consultarHoteles();
-        })
+        .then(data => finalzarEliminar(data.data))
         .catch(error => console.error(error));
 }
-// function cargarDatosFormulario(id) {
-//     alert("cargando datos en el formulario" + id);
 
-//     //Cargar los datos del hotel en el formulario
+function finalzarEliminar(data) {
+    alert("Hotel eliminado con exito");
+}
 
-// }
+
+
+window.cargarDatosEliminar = function (id) {
+
+    document.getElementById('idEliminar').textContent = id;
+    document.getElementById('idEliminarInput').value = id;
+    const modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
+    modalEliminar.show();
+
+}
+
+function confirmarEliminar() {
+    const id = document.getElementById('idEliminarInput').value;
+    eliminarHotel(id);
+    const modalEliminar = bootstrap.Modal.getInstance(document.getElementById('modalEliminar'));
+    modalEliminar.hide();
+}   
