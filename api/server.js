@@ -22,8 +22,7 @@ mongoose.connect(process.env.MONGODB_URI)
 const PORT = process.env.PORT || 3001;
 
 app.use('/hoteles', require('./routes/HotelRoutes'));
-
-
+app.use('/sedes', require('./routes/SedeRoutes'));
 
 
 app.listen(PORT, () => {
