@@ -60,6 +60,7 @@ function consultarHoteles() {
         url: API.HOTEL,
         dataType: "json",
         success: function (response) {
+            console.log(response);
             pintarTabla(response.data);
             seccionSpinnerLimpiar();
         },

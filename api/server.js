@@ -21,6 +21,11 @@ mongoose.connect(process.env.MONGODB_URI)
 
 const PORT = process.env.PORT || 3001;
 
+app.use('/hoteles', require('./routes/HotelRoutes'));
+
+
+
+
 app.listen(PORT, () => {
     console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
