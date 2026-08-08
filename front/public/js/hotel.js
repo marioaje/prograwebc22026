@@ -111,8 +111,8 @@ function pintarTabla(dataLista) {
         baseTabla.append(`
           <tr class="table-primary">
                   <td>             
-                     <a name="" id="" class="btn btn-warning" role="button" onclick="cargarDatosFormulario(${elementoIndividual.id})">Editar</a>
-                     <a name="" id="" class="btn btn-danger" role="button" onclick="cargarDatosEliminar(${elementoIndividual.id})">Eliminar</a>
+                     <a name="" id="" class="btn btn-warning" role="button" onclick="cargarDatosFormulario('${elementoIndividual._id}')">Editar</a>
+                     <a name="" id="" class="btn btn-danger" role="button" onclick="cargarDatosEliminar('${elementoIndividual._id}')">Eliminar</a>
                   </td>
                   <td scope="row">${elementoIndividual.id}</td>
                   <td>${elementoIndividual.nombre}</td>
@@ -130,7 +130,7 @@ function pintarTabla(dataLista) {
 }
 
 window.cargarDatosFormulario = function (id) {
-    // alert("cargando datos en el formulario" + id);
+
 
     //Cargar los datos del hotel en el formulario
     //GET https://paginas-web-cr.com/Api/hotelApi/hotel/hotel.php?id=1 
@@ -138,13 +138,14 @@ window.cargarDatosFormulario = function (id) {
     //     .then(response => response.json())
     //     .then(data => formularioPintar(data.data[0]))
     //     .catch(error => console.error(error));
-
+    console.log(API.HOTEL + "/" + id);
     $.ajax({
         type: "GET",
-        url: API.HOTEL + "?id=" + id,
+        url: API.HOTEL + "/" + id,
         dataType: "json",
+        contentType: "application/json",
         success: function (response) {
-            formularioPintar(response.data[0]);
+            formularioPintar(response.data);
             seccionSpinnerLimpiar();
         },
         beforeSend: function () {
@@ -170,6 +171,8 @@ function formularioPintar(data) {
     // // document.getElementById('fecha_creacion').value = data.fecha_creacion;
     // document.getElementById('estado').value = data.estado;
     $('#id').val(data.id);
+    $('#idMongo').val(data._id);
+
     $('#nombre').val(data.nombre);
     $('#descripcion').val(data.descripcion);
     $('#telefono').val(data.telefono);
@@ -200,10 +203,11 @@ function crearHotel() {
     const correo = $('#correoCrear').val();
     const sitio_web = $('#sitio_webCrear').val();
     const usuario = "Profe Mario";
+    const id = $('#idCrear').val();
+    const estado = $('#estadoCrear').val();
+    const objetoHotel = new hotelModels(id, nombre, descripcion, telefono, correo, sitio_web, usuario, "", estado);
 
-    const objetoHotel = new hotelModels(0, nombre, descripcion, telefono, correo, sitio_web, usuario);
-
-
+    console.log(objetoHotel);
     // fetch(API.HOTEL, { method: 'POST', body: JSON.stringify(objetoHotel) })
     //     .then(response => response.json())
     //     .then(data => finalzarCrear(data.data))
@@ -214,6 +218,7 @@ function crearHotel() {
         type: "POST",
         url: API.HOTEL,
         dataType: "json",
+        contentType: "application/json",
         data: JSON.stringify(objetoHotel),
         success: function (response) {
             finalzarCrear(response.data);
@@ -261,12 +266,14 @@ function actualizarHotel() {
     const correo = $('#correo').val();
     const sitio_web = $('#sitio_web').val();
     const usuario = "Profe Mario";
-
+    const estado = $('#estado').val();
+    const _id = $('#idMongo').val();
+    console.log("idMongo: " + _id);
     // { "id":1, "nombre":"Hotel Paradise CR", "descripcion":"Actualizado", "telefono":"8888-9999", "correo":"nuevo@gmail.com", "sitio_web":"https://hotelcr.com", "usuario":"Mario" } 
 
-    const objetoHotel = new hotelModels(id, nombre, descripcion, telefono, correo, sitio_web, usuario);
+    const objetoHotel = new hotelModels(_id, id, nombre, descripcion, telefono, correo, sitio_web, usuario, "", estado);
 
-
+    console.log(objetoHotel);
     // fetch(API.HOTEL, { method: 'PUT', body: JSON.stringify(objetoHotel) })
     //     .then(response => response.json())
     //     .then(data => finalzarEditar(data.data))
@@ -278,7 +285,10 @@ function actualizarHotel() {
         url: API.HOTEL,
         dataType: "json",
         data: JSON.stringify(objetoHotel),
+        contentType: "application/json",
         success: function (response) {
+            console.log("Actualizando");
+            console.log(response);
             finalzarEditar(response.data);
             seccionSpinnerLimpiar();
         },
@@ -309,7 +319,7 @@ function finalzarEditar(data) {
 function eliminarHotel(id) {
 
     const objetoHotel = new hotelModels(id, "", "", "", "", "", "");
-
+    console.log(objetoHotel);
 
     // fetch(API.HOTEL, { method: 'DELETE', body: JSON.stringify(objetoHotel) })
     //     .then(response => response.json())
@@ -322,7 +332,10 @@ function eliminarHotel(id) {
         url: API.HOTEL,
         dataType: "json",
         data: JSON.stringify(objetoHotel),
+        contentType: "application/json",
         success: function (response) {
+            console.log("Eliminando");
+            console.log(response);
             finalzarEliminar(response.data);
             seccionSpinnerLimpiar();
         },

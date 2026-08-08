@@ -58,4 +58,36 @@ router.post('/', async (req, res) => {
     }
 });
 
+
+
+//actualizar datos o put
+router.put('/', async (req, res) => {
+    try {
+        // const hotel = new Hotel(req.body);
+        req.body.fecha_creacion = new Date();
+        // const savedHotel = await hotel.save();
+        const hotelObjeto = await Hotel.findByIdAndUpdate(
+            req.body._id,
+            req.body,
+            { new: true });
+        res.status(202).json(hotelObjeto);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+
+//actualizar datos o put
+router.delete('/', async (req, res) => {
+    try {
+
+        const hotelObjeto = await Hotel.findByIdAndDelete(
+            req.body._id
+        );
+        res.status(202).json(hotelObjeto);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 module.exports = router;

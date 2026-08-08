@@ -1,6 +1,7 @@
 export class hotelModels {
 
     constructor(
+        _id = "",
         id = 0,
         nombre = "",
         descripcion = "",
@@ -11,7 +12,8 @@ export class hotelModels {
         fecha_creacion = "",
         estado = ""
     ) {
-        this.id = id,
+        this._id = _id,
+            this.id = id,
             this.nombre = nombre,
             this.descripcion = descripcion,
             this.telefono = telefono,
